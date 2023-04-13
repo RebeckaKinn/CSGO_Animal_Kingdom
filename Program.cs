@@ -5,9 +5,9 @@
         static void Main(string[] args)
         {
             var gamePlay = new Gameplay();
-            var cat = new Cat();
-            var dog = new Dog();
-            gamePlay.Start(cat, dog);
+            var list = new CharacterList();
+            bool dogsTurn = false;
+            gamePlay.Start(list, dogsTurn);
         }
     }
 }
