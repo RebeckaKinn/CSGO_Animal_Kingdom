@@ -2,7 +2,7 @@
 {
     public class CatGameplay
     {
-        public void Play(Dog dog)
+        public void Play()
         {
 
         }

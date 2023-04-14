@@ -2,7 +2,7 @@
 {
     public class Gameplay
     {
-        public void Start(CharacterList cat, Dog dog, bool dogsTurn)
+        public void Start(CharacterList cat, bool dogsTurn)
         {
             ChangeTurn(dogsTurn);
             if (dogsTurn)
@@ -13,7 +13,7 @@
             else
             {
                 var catGameplay = new CatGameplay();
-                catGameplay.Play(dog);
+                catGameplay.Play();
             }
         }
 
