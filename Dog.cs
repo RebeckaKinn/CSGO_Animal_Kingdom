@@ -16,13 +16,34 @@
             };
         }
 
-        public void KillTerrorist(Cat cat, int chanceCount)
+        public void KillTerrorist(Cat cat, bool success)
         {
-            int num = new Random().Next(0, chanceCount);
-            foreach (Profile p in cat.Cats)
+            if (success && !CheckIfAllIsDead())
             {
-                if (cat.Cats.IndexOf(p) == num) p.Dead();
+
+                foreach (Profile p in cat.Cats)
+                {
+                    if (!p.CheckIfDead())
+                    {
+                        p.Dead();
+                        break;
+                    }
+
+                }
             }
+        }
+
+        public bool CheckIfAllIsDead()
+        {
+            foreach (Profile p in Dogs)
+            {
+                if (p.IsDead) return true;
+            }
+            return false;
+        }
+        public void Win()
+        {
+            Console.WriteLine("The dogs win this round!");
         }
 
         public bool IsSuccessful(int numb)
@@ -30,13 +51,14 @@
             return false;
         }
 
-        public void DefuseBomb(List<Cat> cat)
+        public bool DefuseBomb()
         {
-            if (cat.All(i => i.IsDead))
-            {
+            //if (cat.All(i => i.IsDead))
+            //{
 
-            }
-            else return;
+            //}
+            //else
+            return false;
 
         }
     }
