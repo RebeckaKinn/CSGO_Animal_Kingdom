@@ -1,21 +1,28 @@
 ﻿namespace CSGO_Animal_Kingdom
 {
-    public class Dog : ICharacter
+    public class Dog
     {
-        public string Role { get; }
-        public string Name { get; }
-        public bool IsDead { get; set; }
+        public List<Profile> Dogs { get; set; }
 
-        public Dog(string name, string role)
+        public Dog()
         {
-            Role = role;
-            Name = name;
-            IsDead = false;
+            var Dogs = new List<Profile>
+            {
+                new Profile("Dog1", "Freedomfighter"),
+                new Profile("Dog2", "Freedomfighter"),
+                new Profile("Dog3", "Freedomfighter"),
+                new Profile("Dog4", "Freedomfighter"),
+                new Profile("Dog5", "Freedomfighter"),
+            };
         }
 
-        public void KillTerrorist(Cat cat)
+        public void KillTerrorist(Cat cat, int chanceCount)
         {
-            cat.IsDead = true;
+            int num = new Random().Next(0, chanceCount);
+            foreach (Profile p in cat.Cats)
+            {
+                if (cat.Cats.IndexOf(p) == num) p.Dead();
+            }
         }
 
         public bool IsSuccessful(int numb)
@@ -31,19 +38,6 @@
             }
             else return;
 
-        }
-
-        public string GetName()
-        {
-            return Name;
-        }
-        public bool CheckIfDead()
-        {
-            return IsDead;
-        }
-        public void Dead()
-        {
-            IsDead = true;
         }
     }
 }

@@ -5,7 +5,5 @@
         string Name { get; }
         string Role { get; }
         bool IsDead { get; }
-
-        bool IsSuccessful(int numb);
     }
 }

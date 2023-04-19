@@ -1,16 +1,19 @@
 ﻿namespace CSGO_Animal_Kingdom
 {
-    public class Cat : ICharacter
+    public class Cat
     {
-        public string Role { get; }
-        public string Name { get; }
-        public bool IsDead { get; set; }
+        public List<Profile> Cats { get; set; }
 
-        public Cat(string name, string role)
+        public Cat()
         {
-            Role = role;
-            Name = name;
-            IsDead = false;
+            var Cats = new List<Profile>
+            {
+                new Profile("Cat1", "Terrorist"),
+                new Profile("Cat2", "Terrorist"),
+                new Profile("Cat3", "Terrorist"),
+                new Profile("Cat4", "Terrorist"),
+                new Profile("Cat5", "Terrorist"),
+            };
         }
 
         public void FindBombSite()
@@ -25,25 +28,23 @@
 
         public void PlantBomb()
         {
-
+            BombIsPlanted();
         }
 
-        public void KillFreedomFighter(Dog dog)
+        public bool BombIsPlanted()
         {
-            dog.IsDead = true;
+            return false;
         }
 
-        public string GetName()
+        public void KillFreedomFighter(Dog dog, int chanceCount)
         {
-            return Name;
+            int num = new Random().Next(0, chanceCount);
+            foreach (Profile p in dog.Dogs)
+            {
+                if (dog.Dogs.IndexOf(p) == num) p.Dead();
+            }
         }
-        public bool CheckIfDead()
-        {
-            return IsDead;
-        }
-        public void Dead()
-        {
-            IsDead = true;
-        }
+
+
     }
 }

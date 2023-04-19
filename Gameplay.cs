@@ -2,29 +2,29 @@
 {
     public class Gameplay
     {
-        public void Start(Dog dogs, Cat cats)
+        public void Start(Cat cats, Dog dogs)
         {
-
             while (!cats.BombIsPlanted())
             {
                 cats.FindBombSite();
-                dogs.KillTerrorist(cats);
-                cats.KillFreedomFighter(dogs);
-                dogs.KillTerrorist(cats);
+                dogs.KillTerrorist(cats, 10);
+                cats.KillFreedomFighter(dogs, 10);
             }
         }
-    }
-    public bool GameOver()
-    {
-        if (BombCountdown() > 0) return false;
-        return true;
-    }
+        public bool GameOver()
+        {
+            if (BombCountdown() > 0) return false;
+            return true;
+        }
 
-    public int BombCountdown()
-    {
-        return 0;
+        public int BombCountdown()
+        {
+            return 0;
+        }
+
+        public static bool IsSuccessful(int numb)
+        {
+            return false;
+        }
     }
-
-
-}
 }
