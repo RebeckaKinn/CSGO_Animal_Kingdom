@@ -2,31 +2,29 @@
 {
     public class Gameplay
     {
-        public void Start(CharacterList cat, bool dogsTurn)
+        public void Start(Dog dogs, Cat cats)
         {
-            ChangeTurn(dogsTurn);
-            if (dogsTurn)
+
+            while (!cats.BombIsPlanted())
             {
-                var dogGameplay = new DogGameplay();
-                dogGameplay.Play(cat);
-            }
-            else
-            {
-                var catGameplay = new CatGameplay();
-                catGameplay.Play();
+                cats.FindBombSite();
+                dogs.KillTerrorist(cats);
+                cats.KillFreedomFighter(dogs);
+                dogs.KillTerrorist(cats);
             }
         }
-
-        public void Kill()
-        {
-            int index = new Random().Next(0, 10);
-        }
-
-        public void ChangeTurn(bool dogsTurn)
-        {
-            dogsTurn = !dogsTurn;
-        }
-
-
     }
+    public bool GameOver()
+    {
+        if (BombCountdown() > 0) return false;
+        return true;
+    }
+
+    public int BombCountdown()
+    {
+        return 0;
+    }
+
+
+}
 }
