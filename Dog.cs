@@ -6,7 +6,7 @@
 
         public Dog()
         {
-            var Dogs = new List<Profile>
+            Dogs = new List<Profile>
             {
                 new Profile("Dog1", "Freedomfighter"),
                 new Profile("Dog2", "Freedomfighter"),
@@ -26,6 +26,7 @@
                     if (!p.CheckIfDead())
                     {
                         p.Dead();
+                        Console.WriteLine($"The dogs killed {p.Name}.");
                         break;
                     }
 
@@ -35,31 +36,26 @@
 
         public bool CheckIfAllIsDead()
         {
-            foreach (Profile p in Dogs)
-            {
-                if (p.IsDead) return true;
-            }
-            return false;
+            //foreach (Profile p in Dogs)
+            //{
+            //    if (p.IsDead)
+            //    {
+            //        return true;
+            //    }
+            //    return false;
+            //}
+            return Dogs.All(x => x.IsDead == true ? true : false);
         }
         public void Win()
         {
             Console.WriteLine("The dogs win this round!");
         }
 
-        public bool IsSuccessful(int numb)
+        public bool DefuseBomb(int timer)
         {
+            timer--;
+            if (timer <= 0) return true;
             return false;
-        }
-
-        public bool DefuseBomb()
-        {
-            //if (cat.All(i => i.IsDead))
-            //{
-
-            //}
-            //else
-            return false;
-
         }
     }
 }

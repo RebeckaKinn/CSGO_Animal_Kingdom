@@ -6,7 +6,7 @@
 
         public Cat()
         {
-            var Cats = new List<Profile>
+            Cats = new List<Profile>
             {
                 new Profile("Cat1", "Terrorist"),
                 new Profile("Cat2", "Terrorist"),
@@ -16,48 +16,44 @@
             };
         }
 
-        public void FindBombSite()
+        public bool FindBombSite(bool success)
         {
-
-        }
-
-        public bool CheckIfAllIsDead()
-        {
-            foreach (Profile p in Cats)
+            if (success)
             {
-                if (p.IsDead) return true;
+                return true;
             }
             return false;
         }
 
-        public bool IsSuccessful(int numb)
+        public bool CheckIfAllIsDead()
         {
-            return false;
+            //foreach (Profile p in Cats)
+            //{
+            //    if (p.IsDead) return true;
+            //}
+            //return false;
+            return Cats.All(x => x.IsDead == true ? true : false);
         }
 
-        public void PlantBomb()
+        public bool PlantBomb(int timer)
         {
-            BombIsPlanted();
-        }
-
-        public bool BombIsPlanted()
-        {
-            return false;
+            timer--;
+            if (timer < 0) return true;
+            else return false;
         }
 
         public void KillFreedomFighter(Dog dog, bool success)
         {
             if (success)
             {
-
                 foreach (Profile p in dog.Dogs)
                 {
                     if (!p.CheckIfDead())
                     {
                         p.Dead();
+                        Console.WriteLine($"{p.Name} is dead.");
                         break;
                     }
-
                 }
             }
         }

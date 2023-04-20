@@ -4,30 +4,30 @@
     {
         public void Start(Cat cats, Dog dogs)
         {
-            while (!cats.BombIsPlanted())
+            int rounds = 15;
+            int timer = 5;
+            while (!cats.PlantBomb(timer))
             {
-                cats.FindBombSite();
-                dogs.KillTerrorist(cats, IsSuccessful(10));
-                cats.KillFreedomFighter(dogs, IsSuccessful(10));
-                CheckGameOver(cats, dogs);
+                _ = cats.FindBombSite(IsSuccessful(5)) == true ? cats.PlantBomb(timer) : cats.FindBombSite(IsSuccessful(5));
+                dogs.KillTerrorist(cats, IsSuccessful(7));
+                cats.KillFreedomFighter(dogs, IsSuccessful(7));
+                CheckGameOver(cats, dogs, rounds);
             }
             for (int countDown = 15; countDown >= 0; countDown--)
             {
                 dogs.KillTerrorist(cats, IsSuccessful(3));
-                cats.KillFreedomFighter(dogs, IsSuccessful(10));
-                CheckGameOver(cats, dogs);
+                cats.KillFreedomFighter(dogs, IsSuccessful(7));
+                dogs.DefuseBomb(5);
+                countDown = rounds;
+                CheckGameOver(cats, dogs, countDown);
             }
         }
-        public void CheckGameOver(Cat cats, Dog dogs)
+        public void CheckGameOver(Cat cats, Dog dogs, int rounds)
         {
-            if (BombCountdown() <= 0 || dogs.CheckIfAllIsDead()) cats.Win();
-            if (dogs.DefuseBomb() || cats.CheckIfAllIsDead() && !cats.BombIsPlanted()) dogs.Win();
+            if (rounds == 0 || dogs.CheckIfAllIsDead()) cats.Win();
+            if (dogs.DefuseBomb(5) && cats.CheckIfAllIsDead() || cats.CheckIfAllIsDead() && !cats.FindBombSite(IsSuccessful(5))) dogs.Win(cats);
         }
 
-        public int BombCountdown()
-        {
-            return 0;
-        }
 
         public bool IsSuccessful(int numb)
         {

@@ -12,10 +12,6 @@
             Name = name;
             IsDead = false;
         }
-        public string GetName()
-        {
-            return Name;
-        }
         public bool CheckIfDead()
         {
             return IsDead;
