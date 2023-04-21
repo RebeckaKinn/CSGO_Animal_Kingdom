@@ -3,7 +3,7 @@
     public class Cat
     {
         public List<Profile> Cats { get; set; }
-
+        private int _timer = 5;
         public Cat()
         {
             Cats = new List<Profile>
@@ -20,6 +20,7 @@
         {
             if (success)
             {
+                Console.WriteLine("\nBomb site is found!\n");
                 return true;
             }
             return false;
@@ -27,19 +28,19 @@
 
         public bool CheckIfAllIsDead()
         {
-            //foreach (Profile p in Cats)
-            //{
-            //    if (p.IsDead) return true;
-            //}
-            //return false;
             return Cats.All(x => x.IsDead == true ? true : false);
         }
 
-        public bool PlantBomb(int timer)
+        public bool PlantBomb()
         {
-            timer--;
-            if (timer < 0) return true;
-            else return false;
+            _timer--;
+            if (_timer < 0)
+            {
+                Console.WriteLine("\nThe bomb is planted!\n");
+                return true;
+            }
+            Console.WriteLine($"Planting bomb...{_timer}...");
+            return false;
         }
 
         public void KillFreedomFighter(Dog dog, bool success)
@@ -59,7 +60,8 @@
         }
         public void Win()
         {
-            Console.WriteLine("The cats win this round!");
+            Console.WriteLine("\nThe cats win this round!\n");
+            Console.ReadKey();
         }
 
     }

@@ -3,7 +3,8 @@
     public class Dog
     {
         public List<Profile> Dogs { get; set; }
-
+        private int _defuseTimer = 5;
+        public int CountDown = 15;
         public Dog()
         {
             Dogs = new List<Profile>
@@ -20,7 +21,6 @@
         {
             if (success && !CheckIfAllIsDead())
             {
-
                 foreach (Profile p in cat.Cats)
                 {
                     if (!p.CheckIfDead())
@@ -29,33 +29,29 @@
                         Console.WriteLine($"The dogs killed {p.Name}.");
                         break;
                     }
-
                 }
             }
         }
 
         public bool CheckIfAllIsDead()
         {
-            //foreach (Profile p in Dogs)
-            //{
-            //    if (p.IsDead)
-            //    {
-            //        return true;
-            //    }
-            //    return false;
-            //}
             return Dogs.All(x => x.IsDead == true ? true : false);
         }
         public void Win()
         {
-            Console.WriteLine("The dogs win this round!");
+            Console.WriteLine("\nThe dogs win this round!\n");
+            Console.ReadKey();
         }
 
-        public bool DefuseBomb(int timer)
+        public void DefuseBomb(Cat cats)
         {
-            timer--;
-            if (timer <= 0) return true;
-            return false;
+            _defuseTimer--;
+            if (_defuseTimer <= 0)
+            {
+                Console.WriteLine("\nThe bomb exploded!\n");
+                cats.Win();
+            }
+            Console.WriteLine($"Defusing bomb...{_defuseTimer}...");
         }
     }
 }
