@@ -43,15 +43,19 @@
             Console.ReadKey();
         }
 
-        public void DefuseBomb(Cat cats)
+        public void DefuseBomb(bool success)
         {
-            _defuseTimer--;
-            if (_defuseTimer <= 0)
+            if (success)
             {
-                Console.WriteLine("\nThe bomb exploded!\n");
-                cats.Win();
+                _defuseTimer--;
+                if (_defuseTimer <= 0)
+                {
+                    Console.WriteLine("\nDEFUSED\n");
+                    Win();
+                }
+                Console.WriteLine($"Defusing bomb...{_defuseTimer}...");
+
             }
-            Console.WriteLine($"Defusing bomb...{_defuseTimer}...");
         }
     }
 }

@@ -15,11 +15,13 @@
             for (int countDown = 15; countDown >= 0; countDown--)
             {
                 dogs.CountDown--;
+                Console.WriteLine($"{dogs.CountDown} time left to explotion!");
                 dogs.KillTerrorist(cats, IsSuccessful(3));
                 cats.KillFreedomFighter(dogs, IsSuccessful(7));
-                dogs.DefuseBomb(cats);
+                dogs.DefuseBomb(IsSuccessful(7));
                 CheckGameOver(cats, dogs);
             }
+            cats.Win();
         }
 
         public void BombCheck(bool success, Cat cats)
