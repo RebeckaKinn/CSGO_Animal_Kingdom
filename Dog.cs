@@ -26,7 +26,7 @@
                     if (!p.CheckIfDead())
                     {
                         p.Dead();
-                        Console.WriteLine($"The dogs killed {p.Name}.");
+                        Console.WriteLine($"{p.Name} is dead.");
                         break;
                     }
                 }

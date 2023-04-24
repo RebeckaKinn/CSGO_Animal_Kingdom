@@ -6,9 +6,7 @@
         {
             var gamePlay = new Gameplay();
             var Cats = new Cat();
-
             var Dogs = new Dog();
-
             gamePlay.Start(Cats, Dogs);
         }
     }
