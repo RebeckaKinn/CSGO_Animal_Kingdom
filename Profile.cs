@@ -5,7 +5,6 @@
         public string Role { get; }
         public string Name { get; }
         public bool IsDead { get; set; }
-
         public Profile(string name, string role)
         {
             Role = role;

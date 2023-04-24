@@ -15,7 +15,6 @@
                 new Profile("Cat5", "Terrorist"),
             };
         }
-
         public bool FindBombSite(bool success)
         {
             if (success)
@@ -25,12 +24,14 @@
             }
             return false;
         }
-
         public bool CheckIfAllIsDead()
         {
             return Cats.All(x => x.IsDead == true ? true : false);
         }
-
+        public int StillAlive()
+        {
+            return Cats.Where(x => !x.IsDead).Count();
+        }
         public bool PlantBomb()
         {
             _timer--;
@@ -42,17 +43,16 @@
             Console.WriteLine($"Planting bomb...{_timer}...");
             return false;
         }
-
         public void KillFreedomFighter(Dog dog, bool success)
         {
-            if (success)
+            if (success && !CheckIfAllIsDead())
             {
                 foreach (Profile p in dog.Dogs)
                 {
                     if (!p.CheckIfDead())
                     {
                         p.Dead();
-                        Console.WriteLine($"{p.Name} is dead.");
+                        Console.WriteLine($"{p.Name} is dead. {dog.StillAlive()} left.");
                         break;
                     }
                 }
@@ -63,6 +63,5 @@
             Console.WriteLine("\nThe cats win this round!\n");
             Console.ReadKey();
         }
-
     }
 }
