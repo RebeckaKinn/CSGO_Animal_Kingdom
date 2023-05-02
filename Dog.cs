@@ -2,29 +2,19 @@
 {
     public class Dog : Character
     {
-        public string Role { get; }
-        public string Name { get; }
-        public bool IsDead { get; set; }
-        public List<Dog> Dogs { get; set; }
+        public List<Character> Dogs;
         private int _defuseTimer = 5;
-        public Dog(string name, string role)
-        {
-            Role = role;
-            Name = name;
-            IsDead = false;
-        }
         public Dog()
         {
-            Dogs = new List<Dog>
+            Dogs = new List<Character>
             {
-                new Dog("Dog1", "Freedomfighter"),
-                new Dog("Dog2", "Freedomfighter"),
-                new Dog("Dog3", "Freedomfighter"),
-                new Dog("Dog4", "Freedomfighter"),
-                new Dog("Dog5", "Freedomfighter"),
+                new Character("Dog1", "Freedomfighter"),
+                new Character("Dog2", "Freedomfighter"),
+                new Character("Dog3", "Freedomfighter"),
+                new Character("Dog4", "Freedomfighter"),
+                new Character("Dog5", "Freedomfighter"),
             };
         }
-
         public void Kill(Cat cat, bool success)
         {
             if (cat.CheckIfAllIsDead()) DefuseBomb();

@@ -2,30 +2,19 @@
 {
     public class Cat : Character
     {
-        public string Role { get; }
-        public string Name { get; }
-        public bool IsDead { get; set; }
-        public List<Cat> Cats { get; set; }
+        public List<Character> Cats;
         private int _timer = 5;
-
-        public Cat(string name, string role)
-        {
-            Role = role;
-            Name = name;
-            IsDead = false;
-        }
         public Cat()
         {
-            Cats = new List<Cat>
+            Cats = new List<Character>
             {
-                new Cat("Cat1", "Terrorist"),
-                new Cat("Cat2", "Terrorist"),
-                new Cat("Cat3", "Terrorist"),
-                new Cat("Cat4", "Terrorist"),
-                new Cat("Cat5", "Terrorist"),
+                new Character("Cat1", "Terrorist"),
+                new Character("Cat2", "Terrorist"),
+                new Character("Cat3", "Terrorist"),
+                new Character("Cat4", "Terrorist"),
+                new Character("Cat5", "Terrorist"),
             };
         }
-
         public bool FindBombSite(bool success)
         {
             if (success)
