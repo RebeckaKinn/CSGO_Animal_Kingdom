@@ -2,34 +2,34 @@
 {
     public class Gameplay
     {
-        public void Start(Cat cats, Dog dogs)
+        public void Start(List<Character> cats, List<Character> dogs, Teams teams)
         {
-            while (!cats.FindBombSite(IsSuccessful(10)))
+            while (!teams.FindBombSite(IsSuccessful(10)))
             {
-                dogs.Kill(cats, IsSuccessful(7));
-                cats.Kill(dogs, IsSuccessful(7));
-                CheckGameOver(cats, dogs);
+                teams.Kill(cats, IsSuccessful(7));
+                teams.Kill(dogs, IsSuccessful(7));
+                CheckGameOver(cats, dogs, teams);
             }
-            while (!cats.PlantBomb())
+            while (!teams.PlantBomb())
             {
-                dogs.Kill(cats, IsSuccessful(5));
-                cats.Kill(dogs, IsSuccessful(7));
-                CheckGameOver(cats, dogs);
+                teams.Kill(cats, IsSuccessful(5));
+                teams.Kill(dogs, IsSuccessful(7));
+                CheckGameOver(cats, dogs, teams);
             }
             for (int countDown = 15; countDown > 0; countDown--)
             {
                 Console.WriteLine($"{countDown} time left to explotion!");
-                dogs.Kill(cats, IsSuccessful(3));
-                cats.Kill(dogs, IsSuccessful(7));
-                CheckGameOver(cats, dogs, countDown);
+                teams.Kill(cats, IsSuccessful(3));
+                teams.Kill(dogs, IsSuccessful(7));
+                CheckGameOver(cats, dogs, teams, countDown);
             }
-            cats.Win();
+            teams.Win(cats);
         }
-        public void CheckGameOver(Cat cats, Dog dogs, int countDown = 10)
+        public void CheckGameOver(List<Character> cats, List<Character> dogs, Teams teams, int countDown = 10)
         {
-            if (dogs.CheckIfAllIsDead()) cats.Win();
-            if (cats.CheckIfAllIsDead() && dogs.DefuseTime() == 0) dogs.Win();
-            if (cats.CheckIfAllIsDead() && countDown < 0) dogs.Win();
+            if (teams.CheckIfAllIsDead(dogs)) teams.Win(cats);
+            if (teams.CheckIfAllIsDead(cats) && teams.DefuseTime() == 0) teams.Win(dogs);
+            if (teams.CheckIfAllIsDead(cats) && countDown < 0) teams.Win(dogs);
         }
 
         public bool IsSuccessful(int numb)
