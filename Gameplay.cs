@@ -6,21 +6,21 @@
         {
             while (!cats.FindBombSite(IsSuccessful(10)))
             {
-                dogs.KillTerrorist(cats, IsSuccessful(7));
-                cats.KillFreedomFighter(dogs, IsSuccessful(7));
+                dogs.Kill(cats, IsSuccessful(7));
+                cats.Kill(dogs, IsSuccessful(7));
                 CheckGameOver(cats, dogs);
             }
             while (!cats.PlantBomb())
             {
-                dogs.KillTerrorist(cats, IsSuccessful(5));
-                cats.KillFreedomFighter(dogs, IsSuccessful(7));
+                dogs.Kill(cats, IsSuccessful(5));
+                cats.Kill(dogs, IsSuccessful(7));
                 CheckGameOver(cats, dogs);
             }
             for (int countDown = 15; countDown > 0; countDown--)
             {
                 Console.WriteLine($"{countDown} time left to explotion!");
-                dogs.KillTerrorist(cats, IsSuccessful(3));
-                cats.KillFreedomFighter(dogs, IsSuccessful(7));
+                dogs.Kill(cats, IsSuccessful(3));
+                cats.Kill(dogs, IsSuccessful(7));
                 CheckGameOver(cats, dogs, countDown);
             }
             cats.Win();

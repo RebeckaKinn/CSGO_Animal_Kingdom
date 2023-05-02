@@ -1,26 +1,36 @@
 ﻿namespace CSGO_Animal_Kingdom
 {
-    public class Dog
+    public class Dog : Character
     {
-        public List<Profile> Dogs { get; set; }
+        public string Role { get; }
+        public string Name { get; }
+        public bool IsDead { get; set; }
+        public List<Dog> Dogs { get; set; }
         private int _defuseTimer = 5;
+        public Dog(string name, string role)
+        {
+            Role = role;
+            Name = name;
+            IsDead = false;
+        }
         public Dog()
         {
-            Dogs = new List<Profile>
+            Dogs = new List<Dog>
             {
-                new Profile("Dog1", "Freedomfighter"),
-                new Profile("Dog2", "Freedomfighter"),
-                new Profile("Dog3", "Freedomfighter"),
-                new Profile("Dog4", "Freedomfighter"),
-                new Profile("Dog5", "Freedomfighter"),
+                new Dog("Dog1", "Freedomfighter"),
+                new Dog("Dog2", "Freedomfighter"),
+                new Dog("Dog3", "Freedomfighter"),
+                new Dog("Dog4", "Freedomfighter"),
+                new Dog("Dog5", "Freedomfighter"),
             };
         }
-        public void KillTerrorist(Cat cat, bool success)
+
+        public void Kill(Cat cat, bool success)
         {
             if (cat.CheckIfAllIsDead()) DefuseBomb();
             if (success && !CheckIfAllIsDead())
             {
-                foreach (Profile p in cat.Cats)
+                foreach (var p in cat.Cats)
                 {
                     if (!p.CheckIfDead())
                     {
@@ -59,5 +69,6 @@
         {
             return _defuseTimer;
         }
+
     }
 }
